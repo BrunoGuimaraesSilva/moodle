@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/notifications/db" VERSION="2025052500" COMMENT="Table for scheduled notifications" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+    <TABLES>
+        <TABLE NAME="local_notifications" COMMENT="Scheduled notifications">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true"/>
+                <FIELD NAME="title" TYPE="char" LENGTH="255" NOTNULL="true" COLLATION="utf8mb4_general_ci"/>
+                <FIELD NAME="message" TYPE="text" NOTNULL="true" COLLATION="utf8mb4_general_ci"/>
+                <FIELD NAME="senddate" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true"/>
+                <FIELD NAME="sent" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" UNSIGNED="true"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="coursefk" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id"/>
+            </KEYS>
+        </TABLE>
+    </TABLES>
+</XMLDB>
