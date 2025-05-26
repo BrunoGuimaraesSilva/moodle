@@ -17,7 +17,6 @@ class send_notifications extends \core\task\scheduled_task {
         $notifications = $DB->get_records_select('local_notifications', 'senddate <= ? AND sent = 0', [$now]);
 
         foreach ($notifications as $notification) {
-            // Example notification: email or Moodle message
             $course = $DB->get_record('course', ['id' => $notification->courseid], '*', MUST_EXIST);
 
             $context = \context_course::instance($course->id);
@@ -33,7 +32,7 @@ class send_notifications extends \core\task\scheduled_task {
                 $eventdata->fullmessage = $notification->message;
                 $eventdata->fullmessageformat = FORMAT_PLAIN;
                 $eventdata->fullmessagehtml = format_text($notification->message, FORMAT_HTML);
-                $eventdata->smallmessage = $notification->title;
+                $eventdata->smallmessage = $notification->title;    
                 $eventdata->notification = 1;
 
                 message_send($eventdata);
