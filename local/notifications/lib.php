@@ -24,7 +24,7 @@ function local_notifications_extend_settings_navigation(settings_navigation $set
     if ($context->contextlevel === CONTEXT_COURSE) {
         $node = $settingsnav->find('courseadmin', navigation_node::TYPE_CONTAINER);
         if ($node) {
-            $url = new moodle_url('/local/notifications/index.php', ['courseid' => $PAGE->course->id]);
+            $url = new moodle_url('/local/notifications/index.php', ['id' => $PAGE->course->id]);
             $node->add(get_string('pluginname', 'local_notifications'), $url, navigation_node::TYPE_SETTING);
         }
     }
